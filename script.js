@@ -32,51 +32,50 @@
 // }
 // setInterval(addData, 2000);
 
-const ctx = document.getElementById('myChart').getContext('2d');
+const ctx = document.getElementById("myChart").getContext("2d");
 let chart;
 
 // Initial data
 const initialData = {
   labels: [],
-  datasets: [{
-    label: 'Value',
-    data: [],
-    borderColor: 'red',
-    backgroundColor:'blue',
-    borderWidth: 1,
-    fill: false,
-  }],
+  datasets: [
+    {
+        label: 'Monthly Sales',
+        data: [60, 90, 80, 55, 82, 73],
+      borderColor: "red",
+      backgroundColor: "blue",
+      borderWidth: 1,
+    },
+  ],
 };
 
-
 const chartConfig = {
-  type: 'line',
+  type: "line",
   data: initialData,
   options: {
     scales: {
       x: {
-        type: 'linear',
-        position: 'bottom',
+        type: "linear",
+        position: "bottom",
         title: {
           display: true,
-          text: 'Time',
+          text: "year",
         },
       },
       y: {
         beginAtZero: true,
+        suggestedMin: 0,
+        suggestedMax: 100,
         title: {
           display: true,
-          text: 'Value',
+          text: "In units",
         },
       },
     },
-    
   },
 };
 
-
 chart = new Chart(ctx, chartConfig);
-
 
 function addData() {
   const newData = Math.random() * 100;
@@ -86,7 +85,7 @@ function addData() {
 
   // Apply animation
   anime({
-    targets: '#myChart',
+    targets: "#myChart",
     translateY: [0, -50],
     opacity: [1, 0.5],
     delay: anime.stagger(100, { start: 0 }),
